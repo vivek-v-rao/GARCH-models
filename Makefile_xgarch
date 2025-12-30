@@ -1,0 +1,42 @@
+# Makefile for xgarch
+#
+# usage:
+#   make
+#   make run
+#   make clean
+
+cxx      := g++
+cxxflags := -O2 -std=c++11 -Wall -Wextra
+ldflags  :=
+
+exe := xgarch.exe
+
+src := \
+  xgarch.cpp \
+  util.cpp \
+  cli.cpp \
+  dist.cpp \
+  param_maps.cpp \
+  vol_models.cpp \
+  nelder_mead.cpp \
+  fit_nagarch.cpp \
+  fit_garch.cpp \
+  simulate.cpp \
+  report.cpp \
+  stats.cpp
+
+obj := $(src:.cpp=.o)
+
+all: $(exe)
+
+$(exe): $(obj)
+	$(cxx) $(cxxflags) -o $@ $(obj) $(ldflags)
+
+%.o: %.cpp
+	$(cxx) $(cxxflags) -c $< -o $@
+
+run: $(exe)
+	./$(exe)
+
+clean:
+	rm -f $(exe) $(obj)
