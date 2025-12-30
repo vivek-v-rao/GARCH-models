@@ -545,7 +545,7 @@ int main(int argc, char** argv) {
             }
         }
 
-        std::cout << "\n==== summary ====\n";
+        std::cout << "\n==== best models by asset and information criterion ====\n";
         if (column_summaries.empty()) {
             std::cout << "no fitted models to summarize\n";
         } else {
